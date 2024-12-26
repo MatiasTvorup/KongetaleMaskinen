@@ -7,7 +7,8 @@ Kongetalemaskinen
 - [x] Install Mypy
 - [x] Install matplotlib
 - [x] Freeze dependencies
-- [ ] Save speeches
+- [x] Save speeches
 
 - [ ] Convert filepath to dict of strings and occurrence-count
-- [ ] 
+    - [ ] Clean up speech.
+    - [ ] Create returnvalue
