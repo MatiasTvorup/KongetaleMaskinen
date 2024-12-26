@@ -14,11 +14,11 @@ Kongetalemaskinen
     - [x] Clean up speech.
     - [x] Create returnvalue to avoid nested dicts
 
-- [ ] Move analysis to own file
+- [x] Move reading to own file
 
 - [ ] Do MatPlotLibstuff
-    - [ ] BarGraph
-    - [ ] BarGraph with line
+    - [X] BarGraph
+    - [x] BarGraph with line
     - [ ] PieChart
 
 - [ ] Error check in readFromFile.
