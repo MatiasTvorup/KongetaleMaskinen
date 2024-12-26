@@ -9,9 +9,9 @@ Kongetalemaskinen
 - [x] Freeze dependencies
 - [x] Save speeches
 
-- [ ] Convert filepath to dict of strings and occurrence-count
-    - [ ] Read from file
+- [x] Convert filepath to dict of strings and occurrence-count
+    - [x] Read from file
     - [x] Clean up speech.
-    - [x] Create returnvalue
+    - [x] Create returnvalue to avoid nested dicts
 
 - [ ] Error check in readFromFile.
