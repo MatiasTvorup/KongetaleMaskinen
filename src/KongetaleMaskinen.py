@@ -1,3 +1,8 @@
+from pathlib import Path
+
+def readFromFile(path: Path) -> str:
+    # Todo: check if file exists and can be opened
+    return path.open().read()
 
 def cleanText(text:str) -> str:
     #Remove dots, commas and newlines.
@@ -20,4 +25,5 @@ def textToOccurrenceDict(text: str) -> dict[str, int]:
     return d
 
 if __name__ == "__main__":
-    print(textToOccurrenceDict("Hej, hej hej... med dig,,dig"))
+    p = Path('speeches/2012.txt')
+    print(textToOccurrenceDict(cleanText(readFromFile(p))))

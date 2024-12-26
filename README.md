@@ -13,3 +13,5 @@ Kongetalemaskinen
     - [ ] Read from file
     - [x] Clean up speech.
     - [x] Create returnvalue
+
+- [ ] Error check in readFromFile.
