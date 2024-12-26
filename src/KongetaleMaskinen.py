@@ -1,20 +1,44 @@
 from pathlib import Path
+import FileReader as fr
+
 import Types
 
 import matplotlib.pyplot as plt
 import numpy as np
+import math
 
-import FileReader as fr
 
-def showBarChartOverUnder(word:str, occurrences:Types.Occurrences, overUnder:float) -> None:
+def showBarChart(word:str, occurrences:Types.Occurrences, threshold:float) -> None:
     xValues:list[int] = list(occurrences.keys())
     yValues:list[int] = list(occurrences.values())
 
     plt.bar(xValues, yValues)
     plt.title("Antal gange '" + word + "' er blevet nævnt")
     plt.xlabel("Årstal")
-    plt.axhline(y=overUnder,linewidth=1, color='r')
+    plt.axhline(y=threshold,linewidth=1, color='r')
     plt.show()
+
+def showSubplotBarChart(occurrenceDict:dict[str, Types.Occurrences]) -> None:
+    gridSize:int = math.ceil(math.sqrt(len(occurrenceDict)))
+    fig, axs = plt.subplots(gridSize, gridSize)
+
+    gridSize -= 1
+    x:int = 0
+    y:int = 0
+
+    for key in occurrenceDict:
+        xValues:list[int] = list(occurrenceDict[key].keys())
+        yValues:list[int] = list(occurrenceDict[key].values())
+
+        axs[x,y].bar(xValues, yValues)
+        if(x == gridSize):
+            x = 0
+            y +=1
+        else:
+            x += 1
+    
+    plt.show()
+
 
 if __name__ == "__main__":
     d = Types.SpeechDict()
@@ -47,5 +71,6 @@ if __name__ == "__main__":
 
 
     yearOccurrenceDict:Types.YearOccurrenceDictContainer = fr.filesToOccurrencesDictionaries(d)
-    DanmarkOccurrance:Types.Occurrences = fr.getOccurrence("Danmark", yearOccurrenceDict)
-    showBarChartOverUnder("Danmark", DanmarkOccurrance, 3.0)
+    # DanmarkOccurrance:Types.Occurrences = fr.getOccurrence("Danmark", yearOccurrenceDict)
+    # showBarChart("Danmark", DanmarkOccurrance, 3.0)
+    showSubplotBarChart({"danmark":fr.getOccurrence("Danmark", yearOccurrenceDict), "dansk":fr.getOccurrence("dansk", yearOccurrenceDict), "grønland":fr.getOccurrence("grønland",yearOccurrenceDict)})
