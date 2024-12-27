@@ -32,7 +32,10 @@ def filesToOccurrencesDictionaries(pathDict: Types.SpeechDict) -> Types.YearOccu
         d[key] = textToOccurrenceDict(s)
     return d
 
-def getOccurrence(word:str, allOccurrences:Types.YearOccurrenceDictContainer) -> Types.Occurrences:
+def getGraphable(word:str, allOccurrences:Types.YearOccurrenceDictContainer) -> Types.Graphable:
+    g:Types.Graphable = Types.Graphable()
+    g.word = word
+
     o:Types.Occurrences = Types.Occurrences()
     lowerWord:str = word.lower()
 
@@ -42,4 +45,5 @@ def getOccurrence(word:str, allOccurrences:Types.YearOccurrenceDictContainer) ->
         else:
             o[key] = allOccurrences[key][lowerWord]
 
-    return o
+    g.occurrences = o
+    return g

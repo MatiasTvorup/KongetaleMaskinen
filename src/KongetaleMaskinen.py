@@ -7,6 +7,25 @@ import matplotlib.pyplot as plt
 import numpy as np
 import math
 
+def subplotSize(count:int) -> Types.Point:
+    p:Types.Point = Types.Point()
+
+    plotCount:int = p.x * p.y
+
+    while plotCount < count:
+        p.x += 1
+        
+        plotCount = p.x * p.y
+        if plotCount >= count:
+            return p
+        
+        p.y += 1
+
+        plotCount = p.x * p.y
+        if plotCount >= count:
+            return p
+
+    return p
 
 def showBarChart(word:str, occurrences:Types.Occurrences, threshold:float) -> None:
     xValues:list[int] = list(occurrences.keys())
@@ -18,20 +37,25 @@ def showBarChart(word:str, occurrences:Types.Occurrences, threshold:float) -> No
     plt.axhline(y=threshold,linewidth=1, color='r')
     plt.show()
 
-def showSubplotBarChart(occurrenceDict:dict[str, Types.Occurrences]) -> None:
-    gridSize:int = math.ceil(math.sqrt(len(occurrenceDict)))
-    fig, axs = plt.subplots(gridSize, gridSize)
+def showSubplotBarChart(graphables:list[Types.Graphable]) -> None:
+    gridSizes:Types.Point = subplotSize(len(graphables))
+    fig, axs = plt.subplots(gridSizes.x, gridSizes.y)
 
-    gridSize -= 1
+    xgridSize = gridSizes.x - 1
     x:int = 0
     y:int = 0
 
-    for key in occurrenceDict:
-        xValues:list[int] = list(occurrenceDict[key].keys())
-        yValues:list[int] = list(occurrenceDict[key].values())
+    for graphable in graphables:
+        if not graphable.IsValid():
+            continue
+
+        xValues:list[int] = list(graphable.occurrences.keys())
+        yValues:list[int] = list(graphable.occurrences.values())
 
         axs[x,y].bar(xValues, yValues)
-        if(x == gridSize):
+        axs[x,y].set_title(graphable.word)
+        axs[x,y].axhline(graphable.threshold)
+        if(x == xgridSize):
             x = 0
             y +=1
         else:
@@ -71,6 +95,32 @@ if __name__ == "__main__":
 
 
     yearOccurrenceDict:Types.YearOccurrenceDictContainer = fr.filesToOccurrencesDictionaries(d)
+
+
+    l:list[Types.Graphable] = list[Types.Graphable]()
+
+    g:Types.Graphable = fr.getGraphable("Danmark", yearOccurrenceDict)
+    g.threshold = 3.5
+    l.append(g)
+
+    g = fr.getGraphable("Dansk", yearOccurrenceDict)
+    g.threshold = 6.5
+    l.append(g)
+
+    g = fr.getGraphable("Grønland", yearOccurrenceDict)
+    g.threshold = 2.5
+    l.append(g)
+    
+    g = fr.getGraphable("Tak", yearOccurrenceDict)
+    g.threshold = 2.5
+    l.append(g)
+
+    g = fr.getGraphable("Er", yearOccurrenceDict)
+    g.threshold = 2.5
+    l.append(g)
+
+    showSubplotBarChart(l)
+
     # DanmarkOccurrance:Types.Occurrences = fr.getOccurrence("Danmark", yearOccurrenceDict)
     # showBarChart("Danmark", DanmarkOccurrance, 3.0)
-    showSubplotBarChart({"danmark":fr.getOccurrence("Danmark", yearOccurrenceDict), "dansk":fr.getOccurrence("dansk", yearOccurrenceDict), "grønland":fr.getOccurrence("grønland",yearOccurrenceDict)})
+    # showSubplotBarChart({"danmark":fr.getOccurrence("Danmark", yearOccurrenceDict), "dansk":fr.getOccurrence("dansk", yearOccurrenceDict), "grønland":fr.getOccurrence("grønland",yearOccurrenceDict)})
