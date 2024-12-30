@@ -31,7 +31,7 @@ Kongetalemaskinen
     - [x] Subplot left to right, instead of top to bottom
 
 - [x] Correct dataset
-- [ ] Sort outputs
+- [x] Sort outputs
 - [ ] Nicer datatype for Types.SpeechDict
 - [ ] Nicer datatype for list[Types.Graphable]
 - [ ] Nicer datatype for Types.YearOccurrenceDictContainer

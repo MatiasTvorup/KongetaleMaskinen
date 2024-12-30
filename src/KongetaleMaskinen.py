@@ -52,7 +52,7 @@ def showSubplotBarChart(graphables:list[Types.Graphable]) -> None:
         yValues:list[int] = list(graphable.occurrences.values())
 
         axs[y,x].bar(xValues, yValues)
-        axs[y,x].set_title(graphable.word + ": " + "{:.2f}".format(graphable.Certainty()) + "%")
+        axs[y,x].set_title(graphable.word + ": " + "{:.2f}".format(graphable.Certainty()) + "% " + graphable.BetOn())
         axs[y,x].axhline(graphable.threshold, color='m')
         axs[y,x].set_xticks(xValues)
         axs[y,x].tick_params(rotation=-45)
@@ -141,11 +141,6 @@ if __name__ == "__main__":
     g.threshold = 1.5
     l.append(g)
 
-    g:Types.Graphable = fr.getGraphable("Frederik", yearOccurrenceDict)
-    g.threshold = 1.5
-    l.append(g)
-
     l.sort(reverse=True, key=graphableSorter)
-
 
     showSubplotBarChart(l)

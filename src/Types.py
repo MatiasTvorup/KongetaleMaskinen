@@ -27,4 +27,21 @@ class Graphable:
             else:
                 underThreshholdCount += 1
         
-        return max(overThreshholdCount, underThreshholdCount) / (overThreshholdCount + underThreshholdCount)
+        return max(overThreshholdCount, underThreshholdCount) / (overThreshholdCount + underThreshholdCount) * 100
+    
+    def BetOn(self) -> str:
+        overThreshholdCount:int = 0
+        underThreshholdCount: int = 0
+
+        for key in self.occurrences:
+            if(self.occurrences[key] > self.threshold):
+                overThreshholdCount += 1
+            else:
+                underThreshholdCount += 1
+
+        if(overThreshholdCount > underThreshholdCount):
+            return "Over"
+        elif(overThreshholdCount < underThreshholdCount):
+            return "Under"
+        else:
+            return "???"
