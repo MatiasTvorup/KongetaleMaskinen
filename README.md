@@ -27,6 +27,11 @@ Kongetalemaskinen
     - [x] Space between subplots to avoid text overlap
     - [x] Every year on x-axis
 
+- [x] Correct dataset
+- [ ] Sort outputs
+- [ ] Nicer datatype for Types.SpeechDict
+- [ ] Nicer datatype for list[Types.Graphable]
+
 - [ ] Text output
     - [ ] Percentage of years over/under threshold
     - [ ] Sorted by Percentage
@@ -38,4 +43,3 @@ Kongetalemaskinen
 
 - [ ] Make UI w/ Textual
 
-- [ ] Nicer datatype for Types.SpeechDict

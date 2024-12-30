@@ -55,6 +55,8 @@ def showSubplotBarChart(graphables:list[Types.Graphable]) -> None:
         axs[x,y].bar(xValues, yValues)
         axs[x,y].set_title(graphable.word)
         axs[x,y].axhline(graphable.threshold, color='m')
+        axs[x,y].set_xticks(xValues)
+        axs[x,y].tick_params(rotation=-45)
         if(x == xgridSize):
             x = 0
             y +=1
@@ -102,23 +104,40 @@ if __name__ == "__main__":
     l:list[Types.Graphable] = list[Types.Graphable]()
 
     g:Types.Graphable = fr.getGraphable("Danmark", yearOccurrenceDict)
+    g.threshold = 7.5
+    l.append(g)
+
+    g:Types.Graphable = fr.getGraphable("Danske", yearOccurrenceDict)
+    g.threshold = 5.5
+    l.append(g)
+
+    g:Types.Graphable = fr.getGraphable("Tak", yearOccurrenceDict)
+    g.threshold = 5.5
+    l.append(g)
+
+    g:Types.Graphable = fr.getGraphable("Verden", yearOccurrenceDict)
     g.threshold = 3.5
     l.append(g)
 
-    g = fr.getGraphable("Dansk", yearOccurrenceDict)
-    g.threshold = 6.5
-    l.append(g)
-
-    g = fr.getGraphable("Grønland", yearOccurrenceDict)
-    g.threshold = 2.5
-    l.append(g)
-    
-    g = fr.getGraphable("Tak", yearOccurrenceDict)
+    g:Types.Graphable = fr.getGraphable("Nytår", yearOccurrenceDict)
     g.threshold = 2.5
     l.append(g)
 
-    g = fr.getGraphable("Er", yearOccurrenceDict)
+    g:Types.Graphable = fr.getGraphable("Grønland", yearOccurrenceDict)
     g.threshold = 2.5
     l.append(g)
+
+    g:Types.Graphable = fr.getGraphable("Færøerne", yearOccurrenceDict)
+    g.threshold = 1.5
+    l.append(g)
+
+    g:Types.Graphable = fr.getGraphable("Samfund", yearOccurrenceDict)
+    g.threshold = 1.5
+    l.append(g)
+
+    g:Types.Graphable = fr.getGraphable("Nytårsønsker", yearOccurrenceDict)
+    g.threshold = 1.5
+    l.append(g)
+
 
     showSubplotBarChart(l)
