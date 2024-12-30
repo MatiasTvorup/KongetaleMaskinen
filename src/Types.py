@@ -16,3 +16,15 @@ class Graphable:
 
     def IsValid(self) -> bool:
         return self.word != "" and self.threshold != 0 and bool(self.occurrences)
+    
+    def Certainty(self) -> float:
+        overThreshholdCount:int = 0
+        underThreshholdCount: int = 0
+
+        for key in self.occurrences:
+            if(self.occurrences[key] > self.threshold):
+                overThreshholdCount += 1
+            else:
+                underThreshholdCount += 1
+        
+        return max(overThreshholdCount, underThreshholdCount) / (overThreshholdCount + underThreshholdCount)

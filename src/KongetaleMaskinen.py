@@ -5,7 +5,6 @@ import Types
 
 import matplotlib.pyplot as plt
 import numpy as np
-import math
 
 def subplotSize(count:int) -> Types.Point:
     p:Types.Point = Types.Point()
@@ -53,7 +52,7 @@ def showSubplotBarChart(graphables:list[Types.Graphable]) -> None:
         yValues:list[int] = list(graphable.occurrences.values())
 
         axs[x,y].bar(xValues, yValues)
-        axs[x,y].set_title(graphable.word)
+        axs[x,y].set_title(graphable.word + ": " + "{:.2f}".format(graphable.Certainty()) + "%")
         axs[x,y].axhline(graphable.threshold, color='m')
         axs[x,y].set_xticks(xValues)
         axs[x,y].tick_params(rotation=-45)
@@ -66,6 +65,9 @@ def showSubplotBarChart(graphables:list[Types.Graphable]) -> None:
     fig.tight_layout()
 
     plt.show()
+
+def graphableSorter(graphable:Types.Graphable) -> float:
+    return graphable.Certainty()
 
 
 if __name__ == "__main__":
@@ -138,6 +140,8 @@ if __name__ == "__main__":
     g:Types.Graphable = fr.getGraphable("Nytårsønsker", yearOccurrenceDict)
     g.threshold = 1.5
     l.append(g)
+
+    l.sort(reverse=True, key=graphableSorter)
 
 
     showSubplotBarChart(l)

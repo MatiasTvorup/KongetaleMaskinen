@@ -47,3 +47,4 @@ def getGraphable(word:str, allOccurrences:Types.YearOccurrenceDictContainer) -> 
 
     g.occurrences = o
     return g
+
