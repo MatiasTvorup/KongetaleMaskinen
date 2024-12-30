@@ -54,13 +54,15 @@ def showSubplotBarChart(graphables:list[Types.Graphable]) -> None:
 
         axs[x,y].bar(xValues, yValues)
         axs[x,y].set_title(graphable.word)
-        axs[x,y].axhline(graphable.threshold)
+        axs[x,y].axhline(graphable.threshold, color='m')
         if(x == xgridSize):
             x = 0
             y +=1
         else:
             x += 1
     
+    fig.tight_layout()
+
     plt.show()
 
 
@@ -120,7 +122,3 @@ if __name__ == "__main__":
     l.append(g)
 
     showSubplotBarChart(l)
-
-    # DanmarkOccurrance:Types.Occurrences = fr.getOccurrence("Danmark", yearOccurrenceDict)
-    # showBarChart("Danmark", DanmarkOccurrance, 3.0)
-    # showSubplotBarChart({"danmark":fr.getOccurrence("Danmark", yearOccurrenceDict), "dansk":fr.getOccurrence("dansk", yearOccurrenceDict), "grønland":fr.getOccurrence("grønland",yearOccurrenceDict)})

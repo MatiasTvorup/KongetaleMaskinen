@@ -22,9 +22,10 @@ Kongetalemaskinen
     - [ ] PieChart
     - [x] Subplots barchart for each word
     - [x] Subplots with threshold
-        - Might require a better datatype
+        - [x] Might require a better datatype
     - [ ] Subplots piechart for each word
-    - [ ] Space between subplots to avoid text overlap
+    - [x] Space between subplots to avoid text overlap
+    - [x] Every year on x-axis
 
 - [ ] Text output
     - [ ] Percentage of years over/under threshold
@@ -34,3 +35,7 @@ Kongetalemaskinen
 - [ ] Add Graphable::IsValid
 
 - [ ] Distinguish between Magrethes and Frederiks taler.
+
+- [ ] Make UI w/ Textual
+
+- [ ] Nicer datatype for Types.SpeechDict
