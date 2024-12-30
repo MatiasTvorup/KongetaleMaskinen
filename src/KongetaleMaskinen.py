@@ -55,7 +55,8 @@ def showSubplotBarChart(graphables:list[Types.Graphable]) -> None:
         axs[y,x].set_title(graphable.word + ": " + "{:.2f}".format(graphable.Certainty()) + "% " + graphable.BetOn())
         axs[y,x].axhline(graphable.threshold, color='m')
         axs[y,x].set_xticks(xValues)
-        axs[y,x].tick_params(rotation=-45)
+        axs[y,x].set_xticklabels(xValues, rotation=-60)
+        # axs[y,x].tick_params(rotation=-45)
         if(x == xgridSize):
             x = 0
             y +=1

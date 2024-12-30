@@ -2,6 +2,8 @@
 Kongetalemaskinen
 
 ## Example
+![Example](/examples/Figure_1.png)
+
 
 ## Todo
 - [x] Setup gitignore
