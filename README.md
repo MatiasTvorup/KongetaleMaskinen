@@ -28,7 +28,7 @@ Kongetalemaskinen
     - [ ] Subplots piechart for each word
     - [x] Space between subplots to avoid text overlap
     - [x] Every year on x-axis
-    - [ ] Subplot left to right, instead of top to bottom
+    - [x] Subplot left to right, instead of top to bottom
 
 - [x] Correct dataset
 - [ ] Sort outputs

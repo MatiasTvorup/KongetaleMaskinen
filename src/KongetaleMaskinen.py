@@ -38,7 +38,7 @@ def showBarChart(word:str, occurrences:Types.Occurrences, threshold:float) -> No
 
 def showSubplotBarChart(graphables:list[Types.Graphable]) -> None:
     gridSizes:Types.Point = subplotSize(len(graphables))
-    fig, axs = plt.subplots(gridSizes.x, gridSizes.y)
+    fig, axs = plt.subplots(gridSizes.y, gridSizes.x)
 
     xgridSize = gridSizes.x - 1
     x:int = 0
@@ -51,11 +51,11 @@ def showSubplotBarChart(graphables:list[Types.Graphable]) -> None:
         xValues:list[int] = list(graphable.occurrences.keys())
         yValues:list[int] = list(graphable.occurrences.values())
 
-        axs[x,y].bar(xValues, yValues)
-        axs[x,y].set_title(graphable.word + ": " + "{:.2f}".format(graphable.Certainty()) + "%")
-        axs[x,y].axhline(graphable.threshold, color='m')
-        axs[x,y].set_xticks(xValues)
-        axs[x,y].tick_params(rotation=-45)
+        axs[y,x].bar(xValues, yValues)
+        axs[y,x].set_title(graphable.word + ": " + "{:.2f}".format(graphable.Certainty()) + "%")
+        axs[y,x].axhline(graphable.threshold, color='m')
+        axs[y,x].set_xticks(xValues)
+        axs[y,x].tick_params(rotation=-45)
         if(x == xgridSize):
             x = 0
             y +=1
@@ -138,6 +138,10 @@ if __name__ == "__main__":
     l.append(g)
 
     g:Types.Graphable = fr.getGraphable("Nytårsønsker", yearOccurrenceDict)
+    g.threshold = 1.5
+    l.append(g)
+
+    g:Types.Graphable = fr.getGraphable("Frederik", yearOccurrenceDict)
     g.threshold = 1.5
     l.append(g)
 
